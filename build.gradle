@@ -1,11 +1,11 @@
 allprojects {
     buildscript {
-        ext.kotlin_version = '1.2.10'
-        ext.serialization_version = '0.3'
+        ext.kotlin_version = '1.2.31'
+        ext.serialization_version = '0.4.2'
         ext.anko_version = '0.10.1'
 
         repositories {
-            maven { url 'http://dl.bintray.com/kotlin/kotlin-eap-1.2' }
+            google()
             maven { url "https://kotlin.bintray.com/kotlinx" }
             maven { url 'https://maven.google.com' }
             jcenter()
@@ -17,7 +17,7 @@ allprojects {
 
     }
     repositories {
-        maven { url 'http://dl.bintray.com/kotlin/kotlin-eap-1.2' }
+        google()
         maven { url "https://kotlin.bintray.com/kotlinx" }
         maven { url 'https://maven.google.com' }
         jcenter()

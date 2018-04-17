@@ -1,4 +1,4 @@
-@file:Suppress("UNUSED_PARAMETER", "DEPRECATION")
+@file:Suppress("UNUSED_PARAMETER", "DEPRECATION", "UNUSED_VARIABLE")
 
 package org.jetbrains.kotlinconf.backend
 
