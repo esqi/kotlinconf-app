@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION", "NOTHING_TO_INLINE")
+
 package org.jetbrains.kotlinconf
 
 import android.arch.lifecycle.LifecycleOwner

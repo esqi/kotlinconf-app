@@ -28,7 +28,7 @@ fun Application.main() {
     install(DefaultHeaders)
     install(ConditionalHeaders)
     install(Compression)
-    install(PartialContentSupport)
+    install(PartialContent)
     install(AutoHeadResponse)
     install(WebSockets)
     install(XForwardedHeadersSupport)

@@ -1,6 +1,6 @@
 buildscript {
-    ext.squash_version = '0.2.3'
-    ext.ktor_version = '0.9.0'
+    ext.squash_version = '0.2.4'
+    ext.ktor_version = '0.9.1'
 
     repositories {
         maven { url "https://plugins.gradle.org/m2/" }
@@ -38,7 +38,7 @@ repositories {
 }
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
     compile project(":common-jvm")
     compile "io.ktor:ktor-server-netty:$ktor_version"

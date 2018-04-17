@@ -1,20 +1,25 @@
 package org.jetbrains.kotlinconf.backend
 
-import com.github.salomonbrys.kotson.*
-import org.jetbrains.kotlinconf.data.*
-import io.ktor.application.*
-import io.ktor.client.*
-import io.ktor.client.backend.apache.*
-import io.ktor.client.call.*
-import io.ktor.http.*
-import kotlinx.coroutines.experimental.*
-import java.net.*
+import com.github.salomonbrys.kotson.fromJson
+import io.ktor.application.Application
+import io.ktor.application.log
+import io.ktor.client.HttpClient
+import io.ktor.client.call.call
+import io.ktor.client.engine.apache.Apache
+import io.ktor.client.response.readText
+import io.ktor.http.HttpStatusCode
+import kotlinx.coroutines.experimental.CommonPool
+import kotlinx.coroutines.experimental.delay
+import kotlinx.coroutines.experimental.launch
+import org.jetbrains.kotlinconf.data.AllData
+import org.jetbrains.kotlinconf.data.Session
+import org.jetbrains.kotlinconf.data.SessionizeData
+import java.net.URL
 import java.text.SimpleDateFormat
 import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.util.*
 import java.util.concurrent.TimeUnit
-import java.util.Date
 
 val apiDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US)
 
@@ -50,9 +55,9 @@ fun Application.launchSyncJob() {
     launch(CommonPool) {
         while (true) {
             log.trace("Synchronizing to Sessionize…")
-            val client = HttpClient(ApacheBackend)
+            val client = HttpClient(Apache)
             val response = client.call(URL(url)) {}
-            val text = response.readText()
+            val text = response.response.readText()
             var data = gson.fromJson<AllData>(text)
             data = data.copy(sessions = data.sessions?.plus(fakeVotingSession))
             log.trace("Finished loading data from Sessionize.")

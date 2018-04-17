@@ -12,8 +12,8 @@ import react.dom.p
 import react.dom.span
 import kotlin.browser.window
 import kotlin.js.Json
-import kotlin.js.Math
 import kotlin.js.json
+import kotlin.math.round
 
 class SessionComponent : RComponent<RouteResultProps<SessionProps>, SessionState>() {
     private var votesSubscription: VotesSubscription? = null
@@ -112,7 +112,7 @@ class SessionComponent : RComponent<RouteResultProps<SessionProps>, SessionState
                         span(classes = "session-votes-cell-hack") { +"\u00A0" }
                         div("session-votes-container") {
                             span(classes = "session-votes-label") { +"\u00A0" }
-                            span(classes = "session-votes-count-percentage") { +"${Math.round(percent * 100)}%" }
+                            span(classes = "session-votes-count-percentage") { +"${round(percent * 100)}%" }
                             span(classes = "session-votes-count-absolute") { +"$value votes" }
                         }
                     }
