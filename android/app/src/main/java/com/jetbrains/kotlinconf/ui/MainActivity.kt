@@ -7,11 +7,15 @@ import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import org.jetbrains.kotlinconf.R
+import com.crashlytics.android.Crashlytics
+import com.crashlytics.android.beta.Beta
+import io.fabric.sdk.android.Fabric
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.frameLayout
+import org.jetbrains.kotlinconf.R
+
 
 class MainActivity :
         AppCompatActivity(),
@@ -32,12 +36,12 @@ class MainActivity :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Fabric.with(this, Crashlytics(), Beta())
         setContentView(createView(AnkoContext.create(this)))
 
         if (savedInstanceState == null) {
             showSessionList()
-        }
-        else {
+        } else {
             savedInstanceState.getString(SEARCH_QUERY_KEY)?.let { _searchQuery = it }
         }
     }
